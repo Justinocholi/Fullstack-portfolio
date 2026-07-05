@@ -19,6 +19,26 @@ export const mediaContent = {
       title: "Working on Something Special",
       videoId: "GmIvG8igTgw",
       description: "Behind the scenes look at new music and creative projects."
+    },
+    {
+      title: "Content Highlight",
+      videoId: "zrghgUfe3Z4",
+      description: "Featured content from the channel."
+    },
+    {
+      title: "Content Highlight",
+      videoId: "vqTBeaTpsf0",
+      description: "Featured content from the channel."
+    },
+    {
+      title: "Content Highlight",
+      videoId: "uu6ZmviGT0I",
+      description: "Featured content from the channel."
+    },
+    {
+      title: "Content Highlight",
+      videoId: "JV31CITw4Mk",
+      description: "Featured content from the channel."
     }
   ],
 
