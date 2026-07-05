@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
+import Background3D from './components/Background3D'
 import Home from './pages/Home'
 import Website from './pages/Website'
 import Artist from './pages/Artist'
@@ -12,6 +13,7 @@ import Media from './pages/Media'
 function App() {
   return (
     <>
+      <Background3D />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

@@ -34,6 +34,38 @@ export const projects: Project[] = [
     }
   },
   {
+    id: 'blockchain-voting-platform',
+    title: 'Blockchain Voting Platform',
+    description: 'Decentralized voting platform leveraging blockchain technology for transparent, tamper-proof elections with real-time result tracking and voter verification.',
+    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80',
+    liveUrl: 'https://blockchain-voting-platform.vercel.app/',
+    githubUrl: 'https://github.com/Justinocholi/Blockchain-voting-platform',
+    featured: true,
+    technologies: ['React', 'TypeScript', 'Blockchain', 'Smart Contracts', 'Web3'],
+    category: 'blockchain',
+    metrics: {
+      performanceScore: 95,
+      loadTime: '1.0s',
+      extra: 'Tamper-proof'
+    }
+  },
+  {
+    id: 'ai-vocal-studio',
+    title: 'AI Vocal Studio',
+    description: 'AI-powered vocal production studio for recording, enhancing, and transforming vocals with intelligent audio processing — blending my music and engineering worlds.',
+    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80',
+    liveUrl: 'https://ai-vocal-studio-kappa.vercel.app/',
+    githubUrl: 'https://github.com/Justinocholi/AI-Vocal-Studio',
+    featured: true,
+    technologies: ['React', 'TypeScript', 'AI', 'Web Audio API', 'Vercel'],
+    category: 'ai / music',
+    metrics: {
+      performanceScore: 94,
+      loadTime: '1.1s',
+      extra: 'AI-powered'
+    }
+  },
+  {
     id: 'taskflow-nova',
     title: 'TaskFlow Nova',
     description: 'Modern task management app with drag-and-drop interface, real-time collaboration, and AI-powered task suggestions.',

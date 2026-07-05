@@ -2,6 +2,7 @@ import '../styles/home.css'
 import { motion } from 'framer-motion'
 import { projects } from '../data/projects'
 import Multimedia from '../components/Multimedia'
+import Tilt3D from '../components/Tilt3D'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -163,10 +164,12 @@ export default function Home() {
               viewport={{ once: true, margin: '-100px' }}
               variants={fadeUp}
             >
-              <div className={`project-preview ${project.highlight ? 'highlight-preview' : ''}`}>
-                <img src={project.image} alt={project.title} />
-                <div className="preview-overlay" />
-              </div>
+              <Tilt3D>
+                <div className={`project-preview ${project.highlight ? 'highlight-preview' : ''}`}>
+                  <img src={project.image} alt={project.title} />
+                  <div className="preview-overlay" />
+                </div>
+              </Tilt3D>
               <div className="project-info">
                 {project.highlight && (
                   <span className="company-badge"><i className="fas fa-building" /> My Company</span>
