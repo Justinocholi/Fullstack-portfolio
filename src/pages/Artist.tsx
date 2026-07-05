@@ -1,5 +1,7 @@
 import '../styles/social.css'
+import '../styles/multimedia.css'
 import MusicCard from '../components/MusicCard'
+import YouTubeEmbed from '../components/YouTubeEmbed'
 import { motion } from 'framer-motion'
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
@@ -31,6 +33,15 @@ export default function Artist() {
           <a href="https://x.com/MunchildAbaga/status/1989216843224215960?s=20" target="_blank" rel="noopener noreferrer" className="btn btn-primary"><i className="fab fa-x-twitter" /> Latest on X</a>
           <a href="mailto:justinocholi001@gmail.com" className="btn btn-secondary">Collaborate <i className="fas fa-envelope" /></a>
         </div>
+
+        <h2 className="page-section-title">Videos</h2>
+        <motion.div className="yt-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+          {['zrghgUfe3Z4', 'vqTBeaTpsf0', 'uu6ZmviGT0I', 'mLDWucJDIf8', 'JV31CITw4Mk'].map((id, i) => (
+            <motion.div key={id} variants={fadeUp}>
+              <YouTubeEmbed videoId={id} title={`Video ${i + 1}`} />
+            </motion.div>
+          ))}
+        </motion.div>
 
         <h2 className="page-section-title">Visual Gallery</h2>
         <motion.div className="gallery-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>

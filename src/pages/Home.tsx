@@ -50,7 +50,7 @@ export default function Home() {
           >
             <div className="hero-image-wrap">
               <div className="hero-glow" />
-              <img src="/bottom.jpg" alt="Joshua Ocholi" />
+              <img src="https://avatars.githubusercontent.com/u/74488931?v=4" alt="Joshua Ocholi" />
               <div className="hero-orbit">
                 <div className="orbit-dot"><i className="fab fa-react" /></div>
                 <div className="orbit-dot"><i className="fab fa-js" /></div>

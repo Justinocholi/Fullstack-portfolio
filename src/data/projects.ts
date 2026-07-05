@@ -116,7 +116,7 @@ export const projects: Project[] = [
     id: 'nova-news-app',
     title: 'Nova News App',
     description: 'News aggregation app with smart categorization, personalized feed, and offline reading from 50+ sources.',
-    image: 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80',
     liveUrl: 'https://nova-newsapp-gamma.vercel.app/',
     githubUrl: 'https://github.com/justinocholi/nova-newsapp',
     featured: false,
