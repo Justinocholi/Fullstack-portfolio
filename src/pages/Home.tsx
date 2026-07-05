@@ -131,13 +131,15 @@ export default function Home() {
             { label: 'Creative', items: ['Figma', 'CapCut', 'Music Production', 'Visual Design', 'Blender'] },
             { label: 'DevOps & Tools', items: ['Git', 'Vercel', 'Docker', 'AWS', 'CI/CD', 'Linux'] },
             { label: 'AI & Security', items: ['Python', 'AI Automation', 'Threat Intelligence', 'Cybersecurity'] }
-          ].map(group => (
+          ].map((group, gi) => (
             <motion.div key={group.label} className="stack-group" variants={fadeUp}>
               <h3>{group.label}</h3>
-              <div className="stack-pills">
-                {group.items.map(item => (
-                  <span key={item} className="stack-pill">{item}</span>
-                ))}
+              <div className={`stack-marquee ${gi % 2 === 1 ? 'reverse' : ''}`}>
+                <div className="stack-track">
+                  {[...group.items, ...group.items].map((item, i) => (
+                    <span key={`${item}-${i}`} className="stack-pill">{item}</span>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

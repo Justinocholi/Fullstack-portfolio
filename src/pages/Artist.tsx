@@ -28,7 +28,8 @@ export default function Artist() {
 
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', margin: '2rem 0 4rem', flexWrap: 'wrap' }}>
           <a href="https://www.youtube.com/@MunchildAbaga" target="_blank" rel="noopener noreferrer" className="btn btn-primary"><i className="fab fa-youtube" /> YouTube</a>
-          <a href="#contact" className="btn btn-secondary">Collaborate <i className="fas fa-envelope" /></a>
+          <a href="https://x.com/MunchildAbaga/status/1989216843224215960?s=20" target="_blank" rel="noopener noreferrer" className="btn btn-primary"><i className="fab fa-x-twitter" /> Latest on X</a>
+          <a href="mailto:justinocholi001@gmail.com" className="btn btn-secondary">Collaborate <i className="fas fa-envelope" /></a>
         </div>
 
         <h2 className="page-section-title">Visual Gallery</h2>

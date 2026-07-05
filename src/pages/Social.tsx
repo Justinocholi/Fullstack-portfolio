@@ -1,5 +1,7 @@
 import '../styles/social.css'
+import '../styles/multimedia.css'
 import { motion } from 'framer-motion'
+import YouTubeEmbed from '../components/YouTubeEmbed'
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } }
@@ -55,16 +57,17 @@ export default function Social() {
         <h2 className="page-section-title">Clients I Manage</h2>
         <motion.div className="client-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           {[
-            { name: 'Haha Hyenas NFT', handle: '@hahahyenasnft', tag: 'NFT community', platform: 'twitter', url: 'https://x.com/hahahyenasnft' },
-            { name: 'The Six Lovitoz', handle: '@thesix_lovitoz', tag: 'Music collective', platform: 'instagram', url: 'https://www.instagram.com/thesix_lovitoz' },
-            { name: 'Vagz Perfumes', handle: '@vagzperfumes', tag: 'Beauty & Lifestyle', platform: 'instagram', url: 'https://www.instagram.com/vagzperfumes' },
-            { name: 'Campus Digest MX', handle: '@campusdigestmx', tag: 'Education & News', platform: 'instagram', url: 'https://www.instagram.com/campusdigestmx' },
-            { name: 'Bad Boi Abaga', handle: '@bad.boiabaga.10', tag: 'Music & Entertainment', platform: 'instagram', url: 'https://www.instagram.com/bad.boiabaga.10' },
-            { name: 'Munchild Abaga', handle: '@munchildabaga', tag: 'Content Creator', platform: 'twitter', url: 'https://x.com/munchildabaga' }
+            { name: 'Haha Hyenas NFT', handle: '@hahahyenasnft', tag: 'NFT community', platform: 'twitter', url: 'https://x.com/hahahyenasnft', avatar: 'https://unavatar.io/twitter/hahahyenasnft' },
+            { name: 'The Six Lovitoz', handle: '@thesix_lovitoz', tag: 'Music collective', platform: 'instagram', url: 'https://www.instagram.com/thesix_lovitoz', avatar: 'https://unavatar.io/instagram/thesix_lovitoz' },
+            { name: 'Vagz Perfumes', handle: '@vagzperfumes', tag: 'Beauty & Lifestyle', platform: 'instagram', url: 'https://www.instagram.com/vagzperfumes', avatar: 'https://unavatar.io/instagram/vagzperfumes' },
+            { name: 'Campus Digest MX', handle: '@campusdigestmx', tag: 'Education & News', platform: 'instagram', url: 'https://www.instagram.com/campusdigestmx', avatar: 'https://unavatar.io/instagram/campusdigestmx' },
+            { name: 'Bad Boi Abaga', handle: '@bad.boiabaga.10', tag: 'Music & Entertainment', platform: 'instagram', url: 'https://www.instagram.com/bad.boiabaga.10', avatar: 'https://unavatar.io/instagram/bad.boiabaga.10' },
+            { name: 'Munchild Abaga', handle: '@munchildabaga', tag: 'Content Creator', platform: 'twitter', url: 'https://x.com/munchildabaga', avatar: 'https://unavatar.io/twitter/munchildabaga' }
           ].map((c, i) => (
             <motion.div key={i} className="client-card" variants={fadeUp}>
               <div className={`client-header gradient-${c.platform}`} />
               <div className="client-body">
+                <img className="client-avatar" src={c.avatar} alt={`${c.name} profile`} loading="lazy" />
                 <div className="client-name">{c.name}</div>
                 <div className="client-handle">{c.handle}</div>
                 <div className="client-tag">{c.tag}</div>
@@ -72,6 +75,21 @@ export default function Social() {
                   <a className="btn-light" target="_blank" rel="noopener noreferrer" href={c.url}>View Profile</a>
                 </div>
               </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <h2 className="page-section-title">Content Highlights</h2>
+        <motion.div className="yt-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+          {[
+            { id: 'zrghgUfe3Z4', title: 'Content Highlight' },
+            { id: 'vqTBeaTpsf0', title: 'Content Highlight' },
+            { id: 'uu6ZmviGT0I', title: 'Content Highlight' },
+            { id: 'mLDWucJDIf8', title: 'Content Highlight' },
+            { id: 'JV31CITw4Mk', title: 'Content Highlight' }
+          ].map((v, i) => (
+            <motion.div key={v.id} variants={fadeUp}>
+              <YouTubeEmbed videoId={v.id} title={`${v.title} ${i + 1}`} />
             </motion.div>
           ))}
         </motion.div>

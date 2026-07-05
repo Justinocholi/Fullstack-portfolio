@@ -9,7 +9,9 @@ const stagger = { visible: { transition: { staggerChildren: 0.1 } } }
 const gradients = ['gradient-blue-purple', 'gradient-green-teal', 'gradient-orange-red', 'gradient-cyan-blue']
 
 export default function Website() {
-  const novaProjects = projects.filter(p => p.id.includes('nova') || p.id.includes('insightly'))
+  const novaProjects = projects.filter(p =>
+    p.id.includes('nova') || p.id.includes('insightly') || p.id === 'blockchain-voting-platform' || p.id === 'ai-vocal-studio'
+  )
 
   return (
     <div>
@@ -28,6 +30,9 @@ export default function Website() {
         <motion.div className="nova-projects-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           {novaProjects.map((project, idx) => (
             <motion.div key={project.id} className="nova-project-card" variants={fadeUp}>
+              <div className="nova-card-img">
+                <img src={project.image} alt={project.title} loading="lazy" />
+              </div>
               <div className={`card-gradient ${gradients[idx % gradients.length]}`}>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
