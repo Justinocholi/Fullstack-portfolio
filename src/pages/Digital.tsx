@@ -1,10 +1,14 @@
 import '../styles/digital.css'
 import { motion } from 'framer-motion'
+import { useSiteData } from '../context/SiteDataContext'
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } }
 
 export default function Digital() {
+  const { siteData } = useSiteData()
+  const { digitalStats, digitalServices } = siteData
+
   return (
     <div>
       <section className="page-hero">
@@ -19,12 +23,7 @@ export default function Digital() {
 
       <div className="page-container">
         <motion.div className="page-stats-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          {[
-            { num: '250%', label: 'Avg. ROI Increase' },
-            { num: '500K+', label: 'Leads Generated' },
-            { num: '50+', label: 'Campaigns Managed' },
-            { num: '95%', label: 'Client Retention' }
-          ].map((s, i) => (
+          {digitalStats.map((s, i) => (
             <motion.div key={i} className="page-stat" variants={fadeUp}>
               <div className="stat-number">{s.num}</div>
               <div className="stat-label">{s.label}</div>
@@ -32,17 +31,10 @@ export default function Digital() {
           ))}
         </motion.div>
 
-        <h2 className="page-section-title">Services & Expertise</h2>
+        <h2 className="page-section-title">Services &amp; Expertise</h2>
         <motion.div className="services-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          {[
-            { icon: '/chart-line-area.svg', title: 'Analytics & Insights', desc: 'Transform raw data into actionable insights.', tags: ['Google Analytics', 'Conversion Tracking', 'KPI Dashboards'] },
-            { icon: '/megaphone-1.svg', title: 'Campaign Planning', desc: 'Design and execute multi-channel marketing campaigns.', tags: ['Strategy', 'Multi-Channel', 'A/B Testing'] },
-            { icon: '/magnifying-glass-tilted-right.svg', title: 'SEO & SEM', desc: 'Increase visibility and drive qualified traffic.', tags: ['Keyword Research', 'On-Page SEO', 'Google Ads'] },
-            { icon: '/mail-incoming.svg', title: 'Email Marketing', desc: 'Build relationships through targeted campaigns.', tags: ['Automation', 'Segmentation', 'Copywriting'] },
-            { icon: '/stopwatch.svg', title: 'Conversion Optimization', desc: 'Maximize ROI at every touchpoint.', tags: ['Funnel Analysis', 'Landing Pages', 'CRO'] },
-            { icon: '/thunderbolt-filled.svg', title: 'Growth Strategies', desc: 'Develop scalable strategies for sustainable growth.', tags: ['Market Analysis', 'Acquisition', 'Retention'] }
-          ].map((s, i) => (
-            <motion.div key={i} className="service-card" variants={fadeUp}>
+          {digitalServices.map((s, i) => (
+            <motion.div key={s.id || i} className="service-card" variants={fadeUp}>
               <div className="service-icon"><img src={s.icon} alt={s.title} width={32} height={32} /></div>
               <h3 className="service-title">{s.title}</h3>
               <p className="service-description">{s.desc}</p>

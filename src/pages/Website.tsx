@@ -1,7 +1,7 @@
 import '../styles/website.css'
 import '../styles/multimedia.css'
-import { projects } from '../data/projects'
 import { motion } from 'framer-motion'
+import { useSiteData } from '../context/SiteDataContext'
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } }
@@ -9,6 +9,8 @@ const stagger = { visible: { transition: { staggerChildren: 0.1 } } }
 const gradients = ['gradient-blue-purple', 'gradient-green-teal', 'gradient-orange-red', 'gradient-cyan-blue']
 
 export default function Website() {
+  const { siteData } = useSiteData()
+  const projects = siteData.projects
   const novaProjects = projects.filter(p =>
     p.id.includes('nova') || p.id.includes('insightly') || p.id === 'blockchain-voting-platform' || p.id === 'ai-vocal-studio'
   )

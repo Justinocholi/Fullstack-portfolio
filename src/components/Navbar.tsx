@@ -1,8 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useAuth } from '../context/AuthContext'
+import { useSiteData } from '../context/SiteDataContext'
 import '../styles/navbar.css'
 
 export default function Navbar() {
+  const { isAuthenticated } = useAuth()
+  const { siteData } = useSiteData()
   const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState<'dark' | 'light'>(() =>
     (localStorage.getItem('theme') as 'dark' | 'light') || 'dark'
@@ -22,7 +26,7 @@ export default function Navbar() {
       <nav className={`nav ${menuOpen ? 'open' : ''}`}>
         <NavLink to="/" className="logo" onClick={closeMenu}>
           <span className="logo-mark">JO</span>
-          <span className="logo-text">Joshua Ocholi Eleojo</span>
+          <span className="logo-text">{siteData.profile.name}</span>
         </NavLink>
         <ul className="nav-links">
           <li><NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''} onClick={closeMenu}>Home</NavLink></li>
@@ -32,6 +36,18 @@ export default function Navbar() {
           <li><NavLink to="/social" className={({ isActive }) => isActive ? 'active' : ''} onClick={closeMenu}>Social</NavLink></li>
           <li><NavLink to="/website" className={({ isActive }) => isActive ? 'active' : ''} onClick={closeMenu}>Website</NavLink></li>
           <li><NavLink to="/media" className={({ isActive }) => isActive ? 'active' : ''} onClick={closeMenu}>Media</NavLink></li>
+          {isAuthenticated && (
+            <li>
+              <NavLink
+                to="/admin"
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={closeMenu}
+                style={{ color: 'var(--accent-purple)', fontWeight: 600 }}
+              >
+                <i className="fas fa-sliders-h" style={{ marginRight: 4 }} /> Admin
+              </NavLink>
+            </li>
+          )}
         </ul>
         <div className="nav-actions">
           <button

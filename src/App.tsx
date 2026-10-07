@@ -2,6 +2,11 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Background3D from './components/Background3D'
+import Footer from './components/Footer'
+import AdminLoginModal from './components/AdminLoginModal'
+import AdminBottomBar from './components/AdminBottomBar'
+import { AuthProvider } from './context/AuthContext'
+import { SiteDataProvider } from './context/SiteDataContext'
 import Home from './pages/Home'
 import Website from './pages/Website'
 import Artist from './pages/Artist'
@@ -9,24 +14,31 @@ import Digital from './pages/Digital'
 import Development from './pages/Development'
 import Social from './pages/Social'
 import Media from './pages/Media'
+import Admin from './pages/Admin'
 
 function App() {
   return (
-    <>
-      <Background3D />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/website" element={<Website />} />
-        <Route path="/artist" element={<Artist />} />
-        <Route path="/digital" element={<Digital />} />
-        <Route path="/development" element={<Development />} />
-        <Route path="/social" element={<Social />} />
-        <Route path="/media" element={<Media />} />
-        {/* Fallback to home for unknown routes */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </>
+    <AuthProvider>
+      <SiteDataProvider>
+        <Background3D />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/website" element={<Website />} />
+          <Route path="/artist" element={<Artist />} />
+          <Route path="/digital" element={<Digital />} />
+          <Route path="/development" element={<Development />} />
+          <Route path="/social" element={<Social />} />
+          <Route path="/media" element={<Media />} />
+          <Route path="/admin" element={<Admin />} />
+          {/* Fallback to home for unknown routes */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        <Footer />
+        <AdminBottomBar />
+        <AdminLoginModal />
+      </SiteDataProvider>
+    </AuthProvider>
   )
 }
 

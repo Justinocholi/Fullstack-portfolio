@@ -1,8 +1,8 @@
 import '../styles/home.css'
 import { motion } from 'framer-motion'
-import { projects } from '../data/projects'
 import Multimedia from '../components/Multimedia'
 import Tilt3D from '../components/Tilt3D'
+import { useSiteData } from '../context/SiteDataContext'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -14,6 +14,8 @@ const stagger = {
 }
 
 export default function Home() {
+  const { siteData } = useSiteData()
+  const { profile, projects, testimonials, building } = siteData
   const featured = projects.filter(p => p.featured)
   const other = projects.filter(p => !p.featured && p.liveUrl)
 
@@ -24,17 +26,16 @@ export default function Home() {
         <div className="hero-inner">
           <motion.div className="hero-left" initial="hidden" animate="visible" variants={stagger}>
             <motion.div className="hero-badge" variants={fadeUp}>
-              <span className="dot" /> Available for freelance
+              <span className="dot" /> {profile.availability}
             </motion.div>
             <motion.h1 className="hero-name" variants={fadeUp}>
-              Joshua <span className="gradient-text">Ocholi</span>
+              {profile.name}
             </motion.h1>
             <motion.p className="hero-title" variants={fadeUp}>
-              Frontend Engineer &amp; Creative Developer
+              {profile.tagline}
             </motion.p>
             <motion.p className="hero-desc" variants={fadeUp}>
-              Building modern digital experiences with performance, motion, and scalable UI systems.
-              From code to creativity — I bring ideas to life across multiple dimensions.
+              {profile.bioShort}
             </motion.p>
             <motion.div className="hero-ctas" variants={fadeUp}>
               <a href="#projects" className="btn-glow primary">View Projects</a>
@@ -50,7 +51,7 @@ export default function Home() {
           >
             <div className="hero-image-wrap">
               <div className="hero-glow" />
-              <img src="https://avatars.githubusercontent.com/u/74488931?v=4" alt="Joshua Ocholi" />
+              <img src={profile.avatarUrl || "https://avatars.githubusercontent.com/u/74488931?v=4"} alt={profile.name} />
               <div className="hero-orbit">
                 <div className="orbit-dot"><i className="fab fa-react" /></div>
                 <div className="orbit-dot"><i className="fab fa-js" /></div>
@@ -73,21 +74,17 @@ export default function Home() {
           <motion.div className="bento-card span-2" variants={fadeUp}>
             <div className="card-icon purple"><i className="fas fa-user" /></div>
             <h3>Who I Am</h3>
-            <p>
-              Started in cybersecurity, transitioned to full-stack development. I build scalable web applications,
-              produce genre-blending music, and drive digital growth through creative strategy. Based in Nigeria,
-              working with clients worldwide.
-            </p>
+            <p>{profile.whoIAm}</p>
           </motion.div>
 
           <motion.div className="bento-card" variants={fadeUp}>
             <div className="card-icon cyan"><i className="fas fa-chart-bar" /></div>
             <h3>By the Numbers</h3>
             <div className="bento-stats">
-              <div className="stat-item"><div className="stat-number">3+</div><div className="stat-label">Years Experience</div></div>
-              <div className="stat-item"><div className="stat-number">20+</div><div className="stat-label">Projects Built</div></div>
-              <div className="stat-item"><div className="stat-number">10+</div><div className="stat-label">Happy Clients</div></div>
-              <div className="stat-item"><div className="stat-number">∞</div><div className="stat-label">Curiosity</div></div>
+              <div className="stat-item"><div className="stat-number">{profile.stats.experience}</div><div className="stat-label">Years Experience</div></div>
+              <div className="stat-item"><div className="stat-number">{profile.stats.projects}</div><div className="stat-label">Projects Built</div></div>
+              <div className="stat-item"><div className="stat-number">{profile.stats.clients}</div><div className="stat-label">Happy Clients</div></div>
+              <div className="stat-item"><div className="stat-number">{profile.stats.curiosity}</div><div className="stat-label">Curiosity</div></div>
             </div>
           </motion.div>
 
@@ -235,13 +232,8 @@ export default function Home() {
         </motion.div>
 
         <motion.div className="building-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          {[
-            { title: 'ThriftLink', desc: 'A platform where verified WhatsApp vendors can gain traction, build trust, and connect with buyers seamlessly.', status: 'In Progress', statusClass: 'in-progress', progress: 65 },
-            { title: 'AI-Powered News Platform', desc: 'Aggregating and personalizing news with AI categorization and offline reading.', status: 'In Progress', statusClass: 'in-progress', progress: 75 },
-            { title: 'Music Visuals System', desc: 'Real-time audio visualizations and interactive music experiences for web.', status: 'Planning', statusClass: 'planning', progress: 30 },
-            { title: 'Frontend Component Library', desc: 'Reusable, accessible UI components built with React and TypeScript.', status: 'In Progress', statusClass: 'in-progress', progress: 55 }
-          ].map((item, idx) => (
-            <motion.div key={idx} className="building-card" variants={fadeUp}>
+          {building.map((item, idx) => (
+            <motion.div key={item.id || idx} className="building-card" variants={fadeUp}>
               <span className={`status ${item.statusClass}`}>
                 <span className="dot" style={{ width: 5, height: 5, borderRadius: '50%', background: 'currentColor' }} />
                 {item.status}
@@ -264,15 +256,13 @@ export default function Home() {
         </motion.div>
 
         <motion.div className="testimonials-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          {[
-            { text: "Joshua's full-stack expertise transformed our vision into a stunning, functional web application. His attention to detail and creative problem-solving exceeded all expectations.", name: 'Tomiwa', role: 'Startup Founder' },
-            { text: "Working with Joshua on our collaborative track was incredible. His unique sound blends genres seamlessly, and his production quality is absolutely top-tier.", name: 'BerryVibez', role: 'Artist' },
-            { text: "Joshua's digital marketing strategies helped us triple our engagement in just three months. His understanding of both the creative and analytical sides is remarkable.", name: 'Blessing', role: 'Marketing Director' }
-          ].map((t, idx) => (
-            <motion.div key={idx} className="testimonial-card" variants={fadeUp}>
+          {testimonials.map((t, idx) => (
+            <motion.div key={t.id || idx} className="testimonial-card" variants={fadeUp}>
               <div className="quote">"</div>
               <div className="stars">
-                <i className="fas fa-star" /> <i className="fas fa-star" /> <i className="fas fa-star" /> <i className="fas fa-star" /> <i className="fas fa-star" />
+                {Array.from({ length: t.stars || 5 }).map((_, i) => (
+                  <i key={i} className="fas fa-star" />
+                ))}
               </div>
               <p className="testimonial-text">{t.text}</p>
               <div className="testimonial-author">
@@ -293,45 +283,36 @@ export default function Home() {
         </motion.div>
 
         <motion.div className="contact-actions" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <a href="mailto:justinocholi001@gmail.com" className="contact-btn email">
-            <i className="fas fa-envelope" /> Send an Email
-          </a>
-          <a href="https://wa.me/2348182740612" target="_blank" rel="noopener noreferrer" className="contact-btn whatsapp">
-            <i className="fab fa-whatsapp" /> WhatsApp
-          </a>
+          {profile.contact.email && (
+            <a href={`mailto:${profile.contact.email}`} className="contact-btn email">
+              <i className="fas fa-envelope" /> Send an Email
+            </a>
+          )}
+          {profile.contact.whatsapp && (
+            <a href={`https://wa.me/${profile.contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="contact-btn whatsapp">
+              <i className="fab fa-whatsapp" /> WhatsApp
+            </a>
+          )}
         </motion.div>
 
         <motion.div className="contact-social" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <a href="https://github.com/Justinocholi" target="_blank" rel="noopener noreferrer"><i className="fab fa-github" /></a>
-          <a href="https://www.linkedin.com/in/joshua-ocholi2k7/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin" /></a>
-          <a href="https://x.com/MunchildAbaga" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter" /></a>
-          <a href="https://www.instagram.com/bad.boiabaga.10/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram" /></a>
-          <a href="https://www.youtube.com/@MunchildAbaga" target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube" /></a>
+          {profile.contact.github && (
+            <a href={profile.contact.github} target="_blank" rel="noopener noreferrer"><i className="fab fa-github" /></a>
+          )}
+          {profile.contact.linkedin && (
+            <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin" /></a>
+          )}
+          {profile.contact.twitter && (
+            <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter" /></a>
+          )}
+          {profile.contact.instagram && (
+            <a href={profile.contact.instagram} target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram" /></a>
+          )}
+          {profile.contact.youtube && (
+            <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube" /></a>
+          )}
         </motion.div>
       </section>
-
-      {/* ===== FOOTER ===== */}
-      <footer className="site-footer">
-        <div className="footer-content">
-          <span className="footer-logo">Joshua Ocholi</span>
-          <p className="footer-tagline">Frontend Engineer & Creative Developer</p>
-          <div className="footer-links">
-            <a href="/">Home</a>
-            <a href="/website">Projects</a>
-            <a href="/media">Media</a>
-            <a href="/development">Development</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <div className="footer-social">
-            <a href="https://github.com/Justinocholi" target="_blank" rel="noopener noreferrer"><i className="fab fa-github" /></a>
-            <a href="https://www.linkedin.com/in/joshua-ocholi2k7/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin" /></a>
-            <a href="https://x.com/MunchildAbaga" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter" /></a>
-            <a href="https://www.instagram.com/bad.boiabaga.10/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram" /></a>
-            <a href="https://www.youtube.com/@MunchildAbaga" target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube" /></a>
-          </div>
-          <p className="footer-copy">&copy; {new Date().getFullYear()} Joshua Ocholi. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   )
 }
