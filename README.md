@@ -1,100 +1,83 @@
-# React + TypeScript + Vite
+# Joshua Ocholi — Lead Frontend Engineer | Product Builder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Engineering robust, accessible, and high-performance web products with React, TypeScript, and modern design systems.
 
-Currently, two official plugins are available:
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-19.x-61dafb.svg)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-6.x-646cff.svg)](https://vitejs.dev/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🎯 About
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Portfolio and engineering showcase for **Joshua Ocholi**, Lead Frontend Developer at **Delverse Technologies Limited** and Founder of **ThriftLink**.
 
-## Expanding the ESLint configuration
+Educated in **Cybersecurity Science** (B.Tech, Federal University of Technology, Minna) and specialized in client-side architecture, performance optimization, and accessible UI engineering.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Verified Stack & Technologies
+- **Frontend**: React 19, Next.js, TypeScript, Tailwind CSS, Vue.js, Vite
+- **Backend**: Node.js, Express
+- **Database**: PostgreSQL
+- **Data & Scripting**: Python
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🏗️ Architecture & Data Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This application is built as a fast, static-first portfolio without external CMS overhead. All content is strongly typed and maintained via immutable TypeScript modules:
+
+```
+src/data/
+├── profile.ts      # Core identity, bio, verified education & contact links
+├── projects.ts     # Verified engineering & product portfolio items
+├── experience.ts   # Professional history (Delverse Technologies, ThriftLink)
+├── now.ts          # Current focus, research, and active priorities
+├── services.ts     # Frontend engineering, architecture, and consulting services
+├── navigation.ts   # Strongly-typed route definitions
+├── media.ts        # Audiovisual and creative projects
+└── types.ts        # Shared TypeScript data models
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Getting Started
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+- Node.js (v18 or higher recommended)
+- npm or pnpm
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Justinocholi/Fullstack-portfolio.git
+
+# Navigate to project directory
+cd Fullstack-portfolio
+
+# Install dependencies
+npm install
+
+# Start local development server
+npm run dev
 ```
 
-## 🔒 Website Admin System
+### Build for Production
 
-An admin panel has been integrated to allow live content editing across the portfolio with discreet owner-only access:
+```bash
+# Type check and build bundle
+npm run build
 
-### How to Access the Admin Page:
-1. **At the bottom of any page (Footer)**:
-   - Next to the copyright notice at the bottom of the footer, there is a subtle secret lock button: `🛡️ / 🔒`.
-   - Alternatively, **triple-click** the copyright text at the bottom.
-2. **Keyboard Shortcut**:
-   - Press `Ctrl + Shift + A` (or `Cmd + Shift + A` on Mac) anywhere on the website.
-3. **Direct URL**:
-   - Navigate to `/admin`.
+# Preview production build locally
+npm run preview
+```
 
-### Passcode:
-- **Default Passcode**: `admin123`
-- You can change this passcode at any time under the **Settings & Backup** tab in the Admin Dashboard.
+---
 
-### Features:
-- **Profile & Hero**: Edit name, tagline, availability status, introduction bio, about section story, and contact/social links.
-- **Projects Manager**: Add, edit, delete, filter, and mark projects as featured (live demos, GitHub links, performance scores).
-- **Media & Music**: Manage audio tracks (playback files and titles), YouTube videos with live thumbnail previews, playlists, and social feeds.
-- **Testimonials & Roadmap**: Add client reviews and track in-progress projects with progress percentage bars.
-- **Managed Clients & Skills**: Edit social clients, brands, services, and technical expertise cards.
-- **Data Persistence & Backups**: Edits auto-save to `localStorage`. You can download a one-click `.json` backup file or restore from a backup anytime.
-- **Owner-Only Visibility**: When logged out, regular visitors only see a standard website. When authenticated, an admin toolbar stays docked at the bottom for quick access.
+## 📬 Contact & Links
 
+- **Email**: [justinocholi001@gmail.com](mailto:justinocholi001@gmail.com)
+- **LinkedIn**: [joshua-ocholi2k7](https://www.linkedin.com/in/joshua-ocholi2k7/)
+- **GitHub**: [@Justinocholi](https://github.com/Justinocholi)
+- **Website / Projects**: [thriftlink.com.ng](https://www.thriftlink.com.ng) &bull; [delversetech.com](https://www.delversetech.com/)

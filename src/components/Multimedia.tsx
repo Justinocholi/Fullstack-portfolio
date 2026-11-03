@@ -2,12 +2,10 @@ import { useState } from 'react'
 import YouTubeEmbed from './YouTubeEmbed'
 import AudioPlayer from './AudioPlayer'
 import SocialPostGrid from './SocialPostGrid'
-import { useSiteData } from '../context/SiteDataContext'
+import { mediaContent } from '../data/media'
 import '../styles/multimedia.css'
 
 export default function Multimedia() {
-  const { siteData } = useSiteData()
-  const mediaContent = siteData.media
   const [activeTab, setActiveTab] = useState<'videos' | 'playlists' | 'music' | 'social'>('videos')
 
   return (

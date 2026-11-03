@@ -114,3 +114,25 @@ export const mediaContent = {
     }
   ]
 }
+
+export const gallery = [
+  {
+    id: 'g-1',
+    title: "I'll Be Fine",
+    desc: 'A cover concept reflecting resilience.',
+    img: "/I'll be fine (1).png"
+  },
+  {
+    id: 'g-2',
+    title: 'Do You',
+    desc: 'Playful aesthetic with vibrant tones.',
+    img: '/do you (2).png'
+  },
+  {
+    id: 'g-3',
+    title: 'Farmbarn',
+    desc: 'Moments from the Farmbarn build.',
+    img: '/cows.jpg'
+  }
+]
+

@@ -3,15 +3,13 @@ import '../styles/multimedia.css'
 import MusicCard from '../components/MusicCard'
 import YouTubeEmbed from '../components/YouTubeEmbed'
 import { motion } from 'framer-motion'
-import { useSiteData } from '../context/SiteDataContext'
+import { profile } from '../data/profile'
+import { mediaContent, gallery } from '../data/media'
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } }
 
 export default function Artist() {
-  const { siteData } = useSiteData()
-  const { media, gallery, profile } = siteData
-
   return (
     <div>
       <section className="page-hero">
@@ -27,7 +25,7 @@ export default function Artist() {
       <div className="page-container">
         <h2 className="page-section-title">Featured Tracks</h2>
         <motion.div className="music-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          {media.audioTracks.map((track, idx) => (
+          {mediaContent.audioTracks.map((track, idx) => (
             <motion.div key={idx} variants={fadeUp}>
               <MusicCard src={track.url} title={track.title} />
             </motion.div>
@@ -54,7 +52,7 @@ export default function Artist() {
 
         <h2 className="page-section-title">Videos</h2>
         <motion.div className="yt-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          {media.youtubeVideos.slice(0, 6).map((vid, i) => (
+          {mediaContent.youtubeVideos.slice(0, 6).map((vid, i) => (
             <motion.div key={vid.videoId || i} variants={fadeUp}>
               <YouTubeEmbed videoId={vid.videoId} title={vid.title || `Video ${i + 1}`} />
             </motion.div>

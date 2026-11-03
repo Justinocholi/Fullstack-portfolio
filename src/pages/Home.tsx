@@ -2,7 +2,10 @@ import '../styles/home.css'
 import { motion } from 'framer-motion'
 import Multimedia from '../components/Multimedia'
 import Tilt3D from '../components/Tilt3D'
-import { useSiteData } from '../context/SiteDataContext'
+import { profile } from '../data/profile'
+import { projects } from '../data/projects'
+import { experience, education } from '../data/experience'
+import { now } from '../data/now'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -14,10 +17,8 @@ const stagger = {
 }
 
 export default function Home() {
-  const { siteData } = useSiteData()
-  const { profile, projects, testimonials, building } = siteData
   const featured = projects.filter(p => p.featured)
-  const other = projects.filter(p => !p.featured && p.liveUrl)
+  const other = projects.filter(p => !p.featured)
 
   return (
     <div>
@@ -32,14 +33,14 @@ export default function Home() {
               {profile.name}
             </motion.h1>
             <motion.p className="hero-title" variants={fadeUp}>
-              {profile.tagline}
+              {profile.role}
             </motion.p>
             <motion.p className="hero-desc" variants={fadeUp}>
               {profile.bioShort}
             </motion.p>
             <motion.div className="hero-ctas" variants={fadeUp}>
-              <a href="#projects" className="btn-glow primary">View Projects</a>
-              <a href="#contact" className="btn-glow secondary">Book a Call</a>
+              <a href="#projects" className="btn-glow primary">View Selected Work</a>
+              <a href="#contact" className="btn-glow secondary">Get in Touch</a>
             </motion.div>
           </motion.div>
 
@@ -51,12 +52,17 @@ export default function Home() {
           >
             <div className="hero-image-wrap">
               <div className="hero-glow" />
-              <img src={profile.avatarUrl || "https://avatars.githubusercontent.com/u/74488931?v=4"} alt={profile.name} />
+              <img
+                src={profile.avatarUrl || "https://avatars.githubusercontent.com/u/74488931?v=4"}
+                alt={profile.name}
+                width={320}
+                height={320}
+              />
               <div className="hero-orbit">
                 <div className="orbit-dot"><i className="fab fa-react" /></div>
                 <div className="orbit-dot"><i className="fab fa-js" /></div>
                 <div className="orbit-dot"><i className="fab fa-node" /></div>
-                <div className="orbit-dot"><i className="fab fa-figma" /></div>
+                <div className="orbit-dot"><i className="fas fa-database" /></div>
               </div>
             </div>
           </motion.div>
@@ -66,8 +72,8 @@ export default function Home() {
       {/* ===== ABOUT BENTO ===== */}
       <section className="about-section" id="about">
         <motion.div className="about-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <p className="section-label">About Me</p>
-          <h2 className="section-heading">A journey through code,<br />creativity &amp; digital innovation</h2>
+          <p className="section-label">Background</p>
+          <h2 className="section-heading">Engineering discipline &amp; product architecture</h2>
         </motion.div>
 
         <motion.div className="bento-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
@@ -78,37 +84,45 @@ export default function Home() {
           </motion.div>
 
           <motion.div className="bento-card" variants={fadeUp}>
-            <div className="card-icon cyan"><i className="fas fa-chart-bar" /></div>
-            <h3>By the Numbers</h3>
-            <div className="bento-stats">
-              <div className="stat-item"><div className="stat-number">{profile.stats.experience}</div><div className="stat-label">Years Experience</div></div>
-              <div className="stat-item"><div className="stat-number">{profile.stats.projects}</div><div className="stat-label">Projects Built</div></div>
-              <div className="stat-item"><div className="stat-number">{profile.stats.clients}</div><div className="stat-label">Happy Clients</div></div>
-              <div className="stat-item"><div className="stat-number">{profile.stats.curiosity}</div><div className="stat-label">Curiosity</div></div>
-            </div>
+            <div className="card-icon cyan"><i className="fas fa-graduation-cap" /></div>
+            <h3>Education</h3>
+            <p style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+              {profile.education.degree} {profile.education.field}
+            </p>
+            <p>{profile.education.institution} ({profile.education.year})</p>
           </motion.div>
 
           <motion.div className="bento-card" variants={fadeUp}>
             <div className="card-icon blue"><i className="fas fa-code" /></div>
-            <h3>Development</h3>
-            <p>React, Next.js, TypeScript, Node.js — building performant frontends and robust backends with modern tooling.</p>
+            <h3>Core Engineering</h3>
+            <p>React, Next.js, TypeScript, Tailwind CSS, Node.js — architecting responsive, accessible user interfaces with solid engineering foundations.</p>
           </motion.div>
 
           <motion.div className="bento-card" variants={fadeUp}>
-            <div className="card-icon green"><i className="fas fa-music" /></div>
-            <h3>Music &amp; Art</h3>
-            <p>Afrobeats, trap, EDM, and alternative — producing original sound that blends emotion with experimental production.</p>
+            <div className="card-icon green"><i className="fas fa-cubes" /></div>
+            <h3>Product Building</h3>
+            <p>From conceptualizing ThriftLink to architecting client platforms, I translate complex product requirements into clean, maintainable software systems.</p>
           </motion.div>
 
           <motion.div className="bento-card" variants={fadeUp}>
             <div className="card-icon purple"><i className="fas fa-link" /></div>
             <h3>Connect</h3>
             <div className="bento-social-links">
-              <a href="https://github.com/Justinocholi" target="_blank" rel="noopener noreferrer"><i className="fab fa-github" /></a>
-              <a href="https://www.linkedin.com/in/joshua-ocholi2k7/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin" /></a>
-              <a href="https://x.com/MunchildAbaga" target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter" /></a>
-              <a href="https://www.instagram.com/bad.boiabaga.10/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram" /></a>
-              <a href="https://www.youtube.com/@MunchildAbaga" target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube" /></a>
+              {profile.contact.github && (
+                <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i className="fab fa-github" /></a>
+              )}
+              {profile.contact.linkedin && (
+                <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin" /></a>
+              )}
+              {profile.contact.twitter && (
+                <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i className="fab fa-twitter" /></a>
+              )}
+              {profile.contact.instagram && (
+                <a href={profile.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram" /></a>
+              )}
+              {profile.contact.youtube && (
+                <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i className="fab fa-youtube" /></a>
+              )}
             </div>
           </motion.div>
         </motion.div>
@@ -117,17 +131,16 @@ export default function Home() {
       {/* ===== TECH STACK ===== */}
       <section className="stack-section" id="stack">
         <motion.div className="stack-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <p className="section-label">Tech Stack</p>
-          <h2 className="section-heading">Tools I work with</h2>
+          <p className="section-label">Technical Stack</p>
+          <h2 className="section-heading">Verified technologies &amp; competencies</h2>
         </motion.div>
 
         <motion.div className="stack-groups" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           {[
-            { label: 'Frontend', items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Vue', 'Vite'] },
-            { label: 'Backend', items: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Supabase', 'REST APIs'] },
-            { label: 'Creative', items: ['Figma', 'CapCut', 'Music Production', 'Visual Design', 'Blender'] },
-            { label: 'DevOps & Tools', items: ['Git', 'Vercel', 'Docker', 'AWS', 'CI/CD', 'Linux'] },
-            { label: 'AI & Security', items: ['Python', 'AI Automation', 'Threat Intelligence', 'Cybersecurity'] }
+            { label: 'Frontend', items: profile.skills.frontend },
+            { label: 'Backend', items: profile.skills.backend },
+            { label: 'Database', items: profile.skills.database },
+            { label: 'Other', items: profile.skills.other }
           ].map((group, gi) => (
             <motion.div key={group.label} className="stack-group" variants={fadeUp}>
               <h3>{group.label}</h3>
@@ -146,10 +159,10 @@ export default function Home() {
       {/* ===== FEATURED PROJECTS ===== */}
       <section className="projects-section" id="projects">
         <motion.div className="projects-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <p className="section-label">Projects</p>
-          <h2 className="section-heading">Featured Work</h2>
+          <p className="section-label">Selected Work</p>
+          <h2 className="section-heading">Engineering &amp; Product Portfolio</h2>
           <p className="section-desc" style={{ margin: '0 auto' }}>
-            Each project is crafted with performance, clean code, and user experience in mind.
+            Production applications and systems built with rigorous attention to architecture, accessibility, and performance.
           </p>
         </motion.div>
 
@@ -165,29 +178,26 @@ export default function Home() {
             >
               <Tilt3D>
                 <div className={`project-preview ${project.highlight ? 'highlight-preview' : ''}`}>
-                  <img src={project.image} alt={project.title} />
+                  <img src={project.image} alt={project.title} loading="lazy" />
                   <div className="preview-overlay" />
                 </div>
               </Tilt3D>
               <div className="project-info">
-                {project.highlight && (
-                  <span className="company-badge"><i className="fas fa-building" /> My Company</span>
-                )}
-                <div className="project-label">{project.category}</div>
+                <div className="project-label">{project.category} &bull; {project.year}</div>
                 <h3>{project.title}</h3>
                 <p className="project-desc">{project.description}</p>
                 <div className="project-stack-tags">
-                  {project.technologies.slice(0, 5).map(t => <span key={t}>{t}</span>)}
+                  {project.technologies.map(t => <span key={t}>{t}</span>)}
                 </div>
                 <div className="project-links">
                   {project.liveUrl && (
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={project.highlight ? 'btn-demo highlight-btn' : 'btn-demo'}>
-                      <i className="fas fa-external-link-alt" /> {project.highlight ? 'Visit Website' : 'Live Demo'}
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-demo">
+                      <i className="fas fa-external-link-alt" /> {project.highlight ? 'Visit Platform' : 'Live Site'}
                     </a>
                   )}
                   {project.githubUrl && (
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-code">
-                      <i className="fab fa-github" /> Code
+                      <i className="fab fa-github" /> Source Code
                     </a>
                   )}
                 </div>
@@ -203,83 +213,76 @@ export default function Home() {
       {/* ===== EXPERIENCE ===== */}
       <section className="experience-section" id="experience">
         <motion.div className="experience-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <p className="section-label">Experience</p>
-          <h2 className="section-heading">Where I've worked</h2>
+          <p className="section-label">Career</p>
+          <h2 className="section-heading">Professional Experience</h2>
         </motion.div>
 
         <motion.div className="timeline" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          {[
-            { date: '2024 — Present', role: 'Full-Stack Developer', company: 'Freelance / Remote', desc: 'Building web applications for startups and businesses. React, Next.js, Node.js, TypeScript. End-to-end development from design to deployment.' },
-            { date: '2024', role: 'Frontend Developer', company: 'Figorr', desc: 'Developed responsive UI components and interactive dashboards. Collaborated with design and backend teams on product features.' },
-            { date: '2023 — 2024', role: 'Social Media Manager', company: 'Campus Digest / Multiple Clients', desc: 'Managed social media presence for 8+ brands. Content strategy, community management, analytics, and growth campaigns.' },
-            { date: '2023', role: 'Digital Marketing Specialist', company: 'Freelance', desc: 'SEO optimization, email campaigns, paid ads management. Helped clients increase engagement by 250%+.' }
-          ].map((item, idx) => (
-            <motion.div key={idx} className="timeline-item" variants={fadeUp}>
-              <div className="tl-date">{item.date}</div>
+          {experience.map((item) => (
+            <motion.div key={item.id} className="timeline-item" variants={fadeUp}>
+              <div className="tl-date">{item.period}</div>
               <h3>{item.role}</h3>
-              <div className="tl-company">{item.company}</div>
-              <p>{item.desc}</p>
+              <div className="tl-company">{item.company} &bull; {item.location}</div>
+              <p>{item.description}</p>
+              <div className="project-stack-tags" style={{ marginTop: '0.75rem' }}>
+                {item.technologies.map(t => <span key={t}>{t}</span>)}
+              </div>
+            </motion.div>
+          ))}
+          {education.map((edu) => (
+            <motion.div key={edu.id} className="timeline-item" variants={fadeUp}>
+              <div className="tl-date">{edu.year}</div>
+              <h3>{edu.degree} in {edu.field}</h3>
+              <div className="tl-company">{edu.institution}</div>
+              <p>Formal academic training in security fundamentals, network defense, and systems architecture.</p>
             </motion.div>
           ))}
         </motion.div>
       </section>
 
-      {/* ===== BUILDING NOW ===== */}
-      <section className="building-section">
+      {/* ===== CURRENT FOCUS / NOW ===== */}
+      <section className="building-section" id="now">
         <motion.div className="building-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <p className="section-label">Currently</p>
-          <h2 className="section-heading">What I'm building now</h2>
+          <h2 className="section-heading">What I'm focused on now</h2>
+          <p className="section-desc" style={{ margin: '0 auto' }}>Updated as of {now.updatedAt} &bull; {now.location}</p>
         </motion.div>
 
         <motion.div className="building-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          {building.map((item, idx) => (
-            <motion.div key={item.id || idx} className="building-card" variants={fadeUp}>
-              <span className={`status ${item.statusClass}`}>
-                <span className="dot" style={{ width: 5, height: 5, borderRadius: '50%', background: 'currentColor' }} />
-                {item.status}
-              </span>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-              <div className="progress-bar">
-                <div className="fill" style={{ width: `${item.progress}%` }} />
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
+          <motion.div className="building-card" variants={fadeUp}>
+            <span className="status in-progress">
+              <span className="dot" style={{ width: 5, height: 5, borderRadius: '50%', background: 'currentColor' }} />
+              Active Focus
+            </span>
+            <h3>Current Priorities</h3>
+            <ul style={{ paddingLeft: '1.25rem', marginTop: '0.75rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
+              {now.currentFocus.map((f, i) => (
+                <li key={i}>{f}</li>
+              ))}
+            </ul>
+          </motion.div>
 
-      {/* ===== TESTIMONIALS ===== */}
-      <section className="testimonials-section">
-        <motion.div className="testimonials-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <p className="section-label">Testimonials</p>
-          <h2 className="section-heading">What people say</h2>
-        </motion.div>
-
-        <motion.div className="testimonials-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-          {testimonials.map((t, idx) => (
-            <motion.div key={t.id || idx} className="testimonial-card" variants={fadeUp}>
-              <div className="quote">"</div>
-              <div className="stars">
-                {Array.from({ length: t.stars || 5 }).map((_, i) => (
-                  <i key={i} className="fas fa-star" />
-                ))}
-              </div>
-              <p className="testimonial-text">{t.text}</p>
-              <div className="testimonial-author">
-                <h4>{t.name}</h4>
-                <p>{t.role}</p>
-              </div>
-            </motion.div>
-          ))}
+          <motion.div className="building-card" variants={fadeUp}>
+            <span className="status completed">
+              <span className="dot" style={{ width: 5, height: 5, borderRadius: '50%', background: 'currentColor' }} />
+              Exploration &amp; Research
+            </span>
+            <h3>Technical Deep Dives</h3>
+            <ul style={{ paddingLeft: '1.25rem', marginTop: '0.75rem', lineHeight: '1.7', color: 'var(--text-secondary)' }}>
+              {now.readingOrExploring.map((item, i) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+          </motion.div>
         </motion.div>
       </section>
 
       {/* ===== CONTACT ===== */}
       <section className="contact-section" id="contact">
         <motion.div className="contact-header" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <p className="section-label">Get in touch</p>
-          <h2>Have a project idea or opportunity?<br />Let's build something <span className="gradient-text">exceptional</span>.</h2>
-          <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+          <p className="section-label">Get in Touch</p>
+          <h2>Let's build reliable, performant software.</h2>
+          <p>Open to discussing engineering roles, product consulting, and architecture collaboration.</p>
         </motion.div>
 
         <motion.div className="contact-actions" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
@@ -297,19 +300,19 @@ export default function Home() {
 
         <motion.div className="contact-social" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           {profile.contact.github && (
-            <a href={profile.contact.github} target="_blank" rel="noopener noreferrer"><i className="fab fa-github" /></a>
+            <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i className="fab fa-github" /></a>
           )}
           {profile.contact.linkedin && (
-            <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin" /></a>
+            <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin" /></a>
           )}
           {profile.contact.twitter && (
-            <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer"><i className="fab fa-twitter" /></a>
+            <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i className="fab fa-twitter" /></a>
           )}
           {profile.contact.instagram && (
-            <a href={profile.contact.instagram} target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram" /></a>
+            <a href={profile.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram" /></a>
           )}
           {profile.contact.youtube && (
-            <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube" /></a>
+            <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i className="fab fa-youtube" /></a>
           )}
         </motion.div>
       </section>
