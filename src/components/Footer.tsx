@@ -7,23 +7,27 @@ import {
   InstagramIcon,
   YoutubeIcon
 } from './icons/BrandIcons'
+import { CopyEmailButton } from './ui/CopyEmailButton'
 
 export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-content">
         <span className="footer-logo">{profile.name}</span>
-        <p className="footer-tagline">{profile.tagline}</p>
+        <p className="footer-tagline">{profile.role}</p>
 
         <nav className="footer-links" aria-label="Footer navigation">
-          <Link to="/">Home</Link>
-          <Link to="/website">Projects</Link>
-          <Link to="/artist">Artist</Link>
-          <Link to="/digital">Digital</Link>
-          <Link to="/development">Development</Link>
-          <Link to="/social">Social</Link>
-          <Link to="/media">Media</Link>
+          <Link to="/">Overview</Link>
+          <a href="/#projects">Selected Work</a>
+          <a href="/#experience">Experience</a>
+          <Link to="/lab">Lab &amp; Media</Link>
+          <Link to="/cv">Curriculum Vitae</Link>
+          <a href="/#contact">Contact</a>
         </nav>
+
+        <div style={{ margin: 'var(--space-4) 0' }}>
+          <CopyEmailButton email={profile.contact.email} />
+        </div>
 
         <div className="footer-social" aria-label="Social media links">
           {profile.contact.github && (
@@ -55,7 +59,7 @@ export default function Footer() {
 
         <div className="footer-bottom-row">
           <p className="footer-copy">
-            &copy; {new Date().getFullYear()} {profile.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {profile.name}. Abuja, Nigeria. All rights reserved.
           </p>
         </div>
       </div>

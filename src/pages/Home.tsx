@@ -1,4 +1,5 @@
 import '../styles/home.css'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   User,
@@ -6,6 +7,7 @@ import {
   Code2,
   Boxes,
   ExternalLink,
+  ArrowRight,
   Mail,
   Database,
   Terminal,
@@ -17,6 +19,8 @@ import { profile } from '../data/profile'
 import { projects } from '../data/projects'
 import { experience, education } from '../data/experience'
 import { now } from '../data/now'
+import { CopyEmailButton } from '../components/ui/CopyEmailButton'
+import { SEO } from '../components/SEO'
 import {
   GithubIcon,
   LinkedinIcon,
@@ -41,6 +45,7 @@ export default function Home() {
 
   return (
     <div>
+      <SEO pathname="/" />
       {/* ===== HERO ===== */}
       <section className="hero" id="home">
         <div className="hero-inner">
@@ -210,6 +215,9 @@ export default function Home() {
                   {project.technologies.map(t => <span key={t}>{t}</span>)}
                 </div>
                 <div className="project-links">
+                  <Link to={`/work/${project.slug}`} className="btn-glow primary" style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}>
+                    Case Study <ArrowRight size={14} style={{ marginLeft: 4 }} />
+                  </Link>
                   {project.liveUrl && (
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-demo">
                       <ExternalLink size={15} style={{ marginRight: 6 }} /> {project.highlight ? 'Visit Platform' : 'Live Site'}
@@ -217,7 +225,7 @@ export default function Home() {
                   )}
                   {project.githubUrl && (
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-code">
-                      <GithubIcon size={15} style={{ marginRight: 6 }} /> Source Code
+                      <GithubIcon size={15} style={{ marginRight: 6 }} /> Code
                     </a>
                   )}
                 </div>
@@ -315,6 +323,11 @@ export default function Home() {
             <a href={`https://wa.me/${profile.contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="contact-btn whatsapp">
               <WhatsappIcon size={18} style={{ marginRight: 6 }} /> WhatsApp
             </a>
+          )}
+          {profile.contact.email && (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <CopyEmailButton email={profile.contact.email} />
+            </div>
           )}
         </motion.div>
 
