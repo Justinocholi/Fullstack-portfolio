@@ -1,6 +1,7 @@
 import '../styles/social.css'
 import '../styles/multimedia.css'
 import { motion } from 'framer-motion'
+import { Target, Users, TrendingUp, MessageSquare } from 'lucide-react'
 import YouTubeEmbed from '../components/YouTubeEmbed'
 import { mediaContent } from '../data/media'
 
@@ -24,13 +25,13 @@ export default function Social() {
         <h2 className="page-section-title">Strategic Areas</h2>
         <motion.div className="page-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           {[
-            { icon: 'fa-bullseye', color: 'purple', title: 'Content & Positioning', desc: 'Crafting clear, consistent engineering and creative narratives.', tags: ['Positioning', 'Technical Writing', 'Developer Storytelling'] },
-            { icon: 'fa-users', color: 'blue', title: 'Community & Ecosystem', desc: 'Engaging developer communities and early adopters for tech products.', tags: ['Feedback Loops', 'Audience Growth', 'Ecosystem'] },
-            { icon: 'fa-chart-line', color: 'cyan', title: 'Distribution Strategy', desc: 'Leveraging organic discovery and modern media channels.', tags: ['Organic Reach', 'Multi-Channel', 'Audience Engagement'] },
-            { icon: 'fa-comment-dots', color: 'green', title: 'Creative Production', desc: 'High-craft audiovisual content and product demos.', tags: ['Audio Production', 'Video Highlights', 'Product Demos'] }
+            { icon: <Target size={22} />, color: 'purple', title: 'Content & Positioning', desc: 'Crafting clear, consistent engineering and creative narratives.', tags: ['Positioning', 'Technical Writing', 'Developer Storytelling'] },
+            { icon: <Users size={22} />, color: 'blue', title: 'Community & Ecosystem', desc: 'Engaging developer communities and early adopters for tech products.', tags: ['Feedback Loops', 'Audience Growth', 'Ecosystem'] },
+            { icon: <TrendingUp size={22} />, color: 'cyan', title: 'Distribution Strategy', desc: 'Leveraging organic discovery and modern media channels.', tags: ['Organic Reach', 'Multi-Channel', 'Audience Engagement'] },
+            { icon: <MessageSquare size={22} />, color: 'green', title: 'Creative Production', desc: 'High-craft audiovisual content and product demos.', tags: ['Audio Production', 'Video Highlights', 'Product Demos'] }
           ].map((item, idx) => (
             <motion.div key={idx} className="page-card" variants={fadeUp}>
-              <div className={`card-icon ${item.color}`}><i className={`fas ${item.icon}`} /></div>
+              <div className={`card-icon ${item.color}`}>{item.icon}</div>
               <h3>{item.title}</h3>
               <p>{item.desc}</p>
               <div className="page-tags">{item.tags.map(t => <span key={t}>{t}</span>)}</div>

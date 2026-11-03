@@ -1,6 +1,8 @@
 import '../styles/website.css'
 import '../styles/multimedia.css'
 import { motion } from 'framer-motion'
+import { ExternalLink } from 'lucide-react'
+import { GithubIcon } from '../components/icons/BrandIcons'
 import { projects } from '../data/projects'
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
@@ -27,7 +29,7 @@ export default function Website() {
           {projects.map((project, idx) => (
             <motion.div key={project.id} className="nova-project-card" variants={fadeUp}>
               <div className="nova-card-img">
-                <img src={project.image} alt={project.title} loading="lazy" />
+                <img src={project.image} alt={project.title} loading="lazy" width={400} height={250} />
               </div>
               <div className={`card-gradient ${gradients[idx % gradients.length]}`}>
                 <h3>{project.title}</h3>
@@ -38,12 +40,12 @@ export default function Website() {
                 <div className="card-actions">
                   {project.liveUrl && (
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-live">
-                      <i className="fas fa-external-link-alt" /> {project.highlight ? 'Visit Platform' : 'Live Demo'}
+                      <ExternalLink size={14} style={{ marginRight: 6 }} /> {project.highlight ? 'Visit Platform' : 'Live Demo'}
                     </a>
                   )}
                   {project.githubUrl && (
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-github">
-                      <i className="fab fa-github" /> GitHub
+                      <GithubIcon size={14} style={{ marginRight: 6 }} /> GitHub
                     </a>
                   )}
                 </div>

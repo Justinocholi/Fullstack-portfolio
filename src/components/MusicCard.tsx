@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Play, Pause } from 'lucide-react'
 
 type Props = {
   src: string
@@ -63,16 +64,29 @@ export default function MusicCard({ src, title }: Props) {
 
   return (
     <div className="music-card">
-      <audio ref={audioRef} className="audio-player" src={src} />
-      <div className="play-btn" onClick={togglePlay}>
-        <i className={`fas ${isPlaying ? 'fa-pause' : 'fa-play'} play-icon`} />
-      </div>
+      <audio ref={audioRef} className="audio-player" src={src} preload="none" />
+      <button
+        type="button"
+        className="play-btn"
+        onClick={togglePlay}
+        aria-label={isPlaying ? `Pause ${title}` : `Play ${title}`}
+      >
+        {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+      </button>
       <div className="music-info">
         <strong>{title}</strong>
         <div className="music-time">
           <span className="current-time">{fmt(current)}</span> / <span className="duration">{fmt(duration)}</span>
         </div>
-        <input type="range" className="seek-bar" value={progress} min={0} max={100} onChange={onSeek} />
+        <input
+          type="range"
+          className="seek-bar"
+          value={progress}
+          min={0}
+          max={100}
+          onChange={onSeek}
+          aria-label={`Seek track position for ${title}`}
+        />
       </div>
     </div>
   )

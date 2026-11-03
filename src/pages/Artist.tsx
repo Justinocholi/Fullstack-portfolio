@@ -3,6 +3,8 @@ import '../styles/multimedia.css'
 import MusicCard from '../components/MusicCard'
 import YouTubeEmbed from '../components/YouTubeEmbed'
 import { motion } from 'framer-motion'
+import { Mail } from 'lucide-react'
+import { YoutubeIcon, TwitterIcon } from '../components/icons/BrandIcons'
 import { profile } from '../data/profile'
 import { mediaContent, gallery } from '../data/media'
 
@@ -35,17 +37,17 @@ export default function Artist() {
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', margin: '2rem 0 4rem', flexWrap: 'wrap' }}>
           {profile.contact.youtube && (
             <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              <i className="fab fa-youtube" /> YouTube
+              <YoutubeIcon size={16} style={{ marginRight: 6 }} /> YouTube
             </a>
           )}
           {profile.contact.twitter && (
             <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-              <i className="fab fa-x-twitter" /> Latest on X
+              <TwitterIcon size={16} style={{ marginRight: 6 }} /> Latest on X
             </a>
           )}
           {profile.contact.email && (
             <a href={`mailto:${profile.contact.email}`} className="btn btn-secondary">
-              Collaborate <i className="fas fa-envelope" />
+              Collaborate <Mail size={16} style={{ marginLeft: 6 }} />
             </a>
           )}
         </div>
@@ -63,7 +65,7 @@ export default function Artist() {
         <motion.div className="gallery-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           {gallery.map((item, idx) => (
             <motion.div key={item.id || idx} className="gallery-card" variants={fadeUp}>
-              <img src={item.img} alt={item.title} />
+              <img src={item.img} alt={item.title} loading="lazy" width={400} height={400} />
               <div className="gallery-info">
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>

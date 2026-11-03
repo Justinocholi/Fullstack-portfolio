@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { Sun, Moon } from 'lucide-react'
 import { profile } from '../data/profile'
 import '../styles/navbar.css'
 
@@ -40,7 +41,7 @@ export default function Navbar() {
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             onClick={toggleTheme}
           >
-            <i className={`fas ${theme === 'dark' ? 'fa-sun' : 'fa-moon'}`} />
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <button className="hamburger" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={toggleMenu}>
             <span className="bar"></span>

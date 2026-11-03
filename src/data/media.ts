@@ -89,7 +89,7 @@ export const mediaContent = {
       platform: 'instagram' as const,
       postId: 'DO7coPeinAV',
       caption: 'Do You (Snippet) - New music coming soon! Afrobeats meets alternative vibes.',
-      image: '/do you (2).png',
+      image: '/do-you.webp',
       likes: 2300,
       comments: 187,
       url: 'https://www.instagram.com/bad.boiabaga.10/reel/DO7coPeinAV/'
@@ -107,7 +107,7 @@ export const mediaContent = {
       platform: 'twitter' as const,
       postId: 'munchildabaga',
       caption: 'Building, creating, shipping. Full-stack development meets artistry. Follow the journey.',
-      image: '/top.jpg',
+      image: '/top.webp',
       likes: 623,
       comments: 32,
       url: 'https://x.com/MunchildAbaga'
@@ -120,19 +120,19 @@ export const gallery = [
     id: 'g-1',
     title: "I'll Be Fine",
     desc: 'A cover concept reflecting resilience.',
-    img: "/I'll be fine (1).png"
+    img: '/ill-be-fine.webp'
   },
   {
     id: 'g-2',
     title: 'Do You',
     desc: 'Playful aesthetic with vibrant tones.',
-    img: '/do you (2).png'
+    img: '/do-you.webp'
   },
   {
     id: 'g-3',
     title: 'Farmbarn',
     desc: 'Moments from the Farmbarn build.',
-    img: '/cows.jpg'
+    img: '/cows.webp'
   }
 ]
 

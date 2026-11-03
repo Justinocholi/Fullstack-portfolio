@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
+import { Play, Pause, SkipBack, SkipForward, Volume2 } from 'lucide-react'
 
 interface AudioTrack {
   title: string
@@ -80,7 +81,7 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
   return (
     <div className="ap-container">
       {track.cover && (
-        <img src={track.cover} alt={track.title} className="ap-cover" />
+        <img src={track.cover} alt={track.title} className="ap-cover" loading="lazy" />
       )}
 
       <div className="ap-track-info">
@@ -96,6 +97,7 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
           value={currentTime}
           onChange={handleSeek}
           className="ap-seek"
+          aria-label={`Seek time in ${track.title}`}
         />
         <div className="ap-times">
           <span>{formatTime(currentTime)}</span>
@@ -108,23 +110,29 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
           onClick={() => currentTrack > 0 && setCurrentTrack(currentTrack - 1)}
           disabled={currentTrack === 0}
           className="ap-btn"
+          aria-label="Previous track"
         >
-          <i className="fas fa-step-backward" />
+          <SkipBack size={18} />
         </button>
-        <button onClick={() => setIsPlaying(!isPlaying)} className="ap-btn ap-play">
-          <i className={`fas ${isPlaying ? 'fa-pause' : 'fa-play'}`} />
+        <button
+          onClick={() => setIsPlaying(!isPlaying)}
+          className="ap-btn ap-play"
+          aria-label={isPlaying ? 'Pause' : 'Play'}
+        >
+          {isPlaying ? <Pause size={18} /> : <Play size={18} />}
         </button>
         <button
           onClick={() => currentTrack < tracks.length - 1 && setCurrentTrack(currentTrack + 1)}
           disabled={currentTrack === tracks.length - 1}
           className="ap-btn"
+          aria-label="Next track"
         >
-          <i className="fas fa-step-forward" />
+          <SkipForward size={18} />
         </button>
       </div>
 
       <div className="ap-volume">
-        <i className="fas fa-volume-up" />
+        <Volume2 size={18} />
         <input
           type="range"
           min="0"
@@ -132,10 +140,11 @@ export default function AudioPlayer({ tracks }: AudioPlayerProps) {
           defaultValue="70"
           onChange={handleVolume}
           className="ap-volume-slider"
+          aria-label="Volume slider"
         />
       </div>
 
-      <audio ref={audioRef} src={track.url} />
+      <audio ref={audioRef} src={track.url} preload="none" />
 
       {tracks.length > 1 && (
         <div className="ap-playlist">

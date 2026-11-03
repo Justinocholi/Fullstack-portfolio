@@ -12,7 +12,7 @@ export const projects: Project[] = [
     featured: true,
     highlight: true,
     liveUrl: 'https://www.thriftlink.com.ng',
-    image: 'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=1200&q=80',
+    image: '/work/thriftlink.webp',
     description:
       'A platform connecting thrift vendors with people looking to discover and connect with them.',
     summary:
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     featured: true,
     highlight: true,
     liveUrl: 'https://www.delversetech.com/',
-    image: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1200&q=80',
+    image: '/work/delverse-tech.webp',
     description:
       'Official web presence for Delverse Technologies Limited, designed for high-performance presentation of software engineering and digital services.',
     summary:
@@ -58,7 +58,7 @@ export const projects: Project[] = [
     featured: true,
     liveUrl: 'https://blockchain-voting-platform.vercel.app/',
     githubUrl: 'https://github.com/Justinocholi/Blockchain-voting-platform',
-    image: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&q=80',
+    image: '/work/blockchain-voting.webp',
     description:
       'Decentralized voting platform leveraging blockchain architecture for transparent, tamper-proof ballot verification and live tallying.',
     summary:
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     featured: true,
     liveUrl: 'https://ai-vocal-studio-kappa.vercel.app/',
     githubUrl: 'https://github.com/Justinocholi/AI-Vocal-Studio',
-    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=80',
+    image: '/work/ai-vocal-studio.webp',
     description:
       'Browser-based audio processing interface combining Web Audio API with intelligent vocal enhancement controls.',
     summary:
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     featured: false,
     liveUrl: 'https://taskflow-nova.vercel.app/',
     githubUrl: 'https://github.com/justinocholi/taskflow-nova',
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=1200&q=80',
+    image: '/work/taskflow-nova.webp',
     description:
       'Task management application featuring optimistic UI updates, drag-and-drop organization, and clean workspace state management.',
     summary:
@@ -120,7 +120,7 @@ export const projects: Project[] = [
     featured: false,
     liveUrl: 'https://insightly-analytics-nova.vercel.app/',
     githubUrl: 'https://github.com/justinocholi/insightly-analytics',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+    image: '/work/insightly-analytics.webp',
     description:
       'Analytics dashboard with customizable data visualizations, time-range filtering, and responsive metric cards.',
     summary:
@@ -138,7 +138,7 @@ export const projects: Project[] = [
     featured: false,
     liveUrl: 'https://nova-newsapp-gamma.vercel.app/',
     githubUrl: 'https://github.com/justinocholi/nova-newsapp',
-    image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=1200&q=80',
+    image: '/work/nova-news.webp',
     description:
       'News aggregation application featuring category filtering, offline service worker caching, and an uncluttered reading experience.',
     summary:

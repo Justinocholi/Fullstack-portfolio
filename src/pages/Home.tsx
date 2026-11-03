@@ -1,11 +1,30 @@
 import '../styles/home.css'
 import { motion } from 'framer-motion'
+import {
+  User,
+  GraduationCap,
+  Code2,
+  Boxes,
+  ExternalLink,
+  Mail,
+  Database,
+  Terminal,
+  Cpu
+} from 'lucide-react'
 import Multimedia from '../components/Multimedia'
 import Tilt3D from '../components/Tilt3D'
 import { profile } from '../data/profile'
 import { projects } from '../data/projects'
 import { experience, education } from '../data/experience'
 import { now } from '../data/now'
+import {
+  GithubIcon,
+  LinkedinIcon,
+  TwitterIcon,
+  InstagramIcon,
+  YoutubeIcon,
+  WhatsappIcon
+} from '../components/icons/BrandIcons'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -57,12 +76,13 @@ export default function Home() {
                 alt={profile.name}
                 width={320}
                 height={320}
+                fetchPriority="high"
               />
-              <div className="hero-orbit">
-                <div className="orbit-dot"><i className="fab fa-react" /></div>
-                <div className="orbit-dot"><i className="fab fa-js" /></div>
-                <div className="orbit-dot"><i className="fab fa-node" /></div>
-                <div className="orbit-dot"><i className="fas fa-database" /></div>
+              <div className="hero-orbit" aria-hidden="true">
+                <div className="orbit-dot"><Code2 size={18} /></div>
+                <div className="orbit-dot"><Terminal size={18} /></div>
+                <div className="orbit-dot"><Cpu size={18} /></div>
+                <div className="orbit-dot"><Database size={18} /></div>
               </div>
             </div>
           </motion.div>
@@ -78,13 +98,13 @@ export default function Home() {
 
         <motion.div className="bento-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           <motion.div className="bento-card span-2" variants={fadeUp}>
-            <div className="card-icon purple"><i className="fas fa-user" /></div>
+            <div className="card-icon purple"><User size={22} /></div>
             <h3>Who I Am</h3>
             <p>{profile.whoIAm}</p>
           </motion.div>
 
           <motion.div className="bento-card" variants={fadeUp}>
-            <div className="card-icon cyan"><i className="fas fa-graduation-cap" /></div>
+            <div className="card-icon cyan"><GraduationCap size={22} /></div>
             <h3>Education</h3>
             <p style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
               {profile.education.degree} {profile.education.field}
@@ -93,35 +113,35 @@ export default function Home() {
           </motion.div>
 
           <motion.div className="bento-card" variants={fadeUp}>
-            <div className="card-icon blue"><i className="fas fa-code" /></div>
+            <div className="card-icon blue"><Code2 size={22} /></div>
             <h3>Core Engineering</h3>
             <p>React, Next.js, TypeScript, Tailwind CSS, Node.js — architecting responsive, accessible user interfaces with solid engineering foundations.</p>
           </motion.div>
 
           <motion.div className="bento-card" variants={fadeUp}>
-            <div className="card-icon green"><i className="fas fa-cubes" /></div>
+            <div className="card-icon green"><Boxes size={22} /></div>
             <h3>Product Building</h3>
             <p>From conceptualizing ThriftLink to architecting client platforms, I translate complex product requirements into clean, maintainable software systems.</p>
           </motion.div>
 
           <motion.div className="bento-card" variants={fadeUp}>
-            <div className="card-icon purple"><i className="fas fa-link" /></div>
+            <div className="card-icon purple"><ExternalLink size={22} /></div>
             <h3>Connect</h3>
             <div className="bento-social-links">
               {profile.contact.github && (
-                <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i className="fab fa-github" /></a>
+                <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GithubIcon size={18} /></a>
               )}
               {profile.contact.linkedin && (
-                <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin" /></a>
+                <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedinIcon size={18} /></a>
               )}
               {profile.contact.twitter && (
-                <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i className="fab fa-twitter" /></a>
+                <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><TwitterIcon size={18} /></a>
               )}
               {profile.contact.instagram && (
-                <a href={profile.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram" /></a>
+                <a href={profile.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon size={18} /></a>
               )}
               {profile.contact.youtube && (
-                <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i className="fab fa-youtube" /></a>
+                <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><YoutubeIcon size={18} /></a>
               )}
             </div>
           </motion.div>
@@ -178,7 +198,7 @@ export default function Home() {
             >
               <Tilt3D>
                 <div className={`project-preview ${project.highlight ? 'highlight-preview' : ''}`}>
-                  <img src={project.image} alt={project.title} loading="lazy" />
+                  <img src={project.image} alt={project.title} loading="lazy" width={600} height={375} />
                   <div className="preview-overlay" />
                 </div>
               </Tilt3D>
@@ -192,12 +212,12 @@ export default function Home() {
                 <div className="project-links">
                   {project.liveUrl && (
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="btn-demo">
-                      <i className="fas fa-external-link-alt" /> {project.highlight ? 'Visit Platform' : 'Live Site'}
+                      <ExternalLink size={15} style={{ marginRight: 6 }} /> {project.highlight ? 'Visit Platform' : 'Live Site'}
                     </a>
                   )}
                   {project.githubUrl && (
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="btn-code">
-                      <i className="fab fa-github" /> Source Code
+                      <GithubIcon size={15} style={{ marginRight: 6 }} /> Source Code
                     </a>
                   )}
                 </div>
@@ -288,31 +308,31 @@ export default function Home() {
         <motion.div className="contact-actions" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           {profile.contact.email && (
             <a href={`mailto:${profile.contact.email}`} className="contact-btn email">
-              <i className="fas fa-envelope" /> Send an Email
+              <Mail size={18} style={{ marginRight: 6 }} /> Send an Email
             </a>
           )}
           {profile.contact.whatsapp && (
             <a href={`https://wa.me/${profile.contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="contact-btn whatsapp">
-              <i className="fab fa-whatsapp" /> WhatsApp
+              <WhatsappIcon size={18} style={{ marginRight: 6 }} /> WhatsApp
             </a>
           )}
         </motion.div>
 
         <motion.div className="contact-social" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           {profile.contact.github && (
-            <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i className="fab fa-github" /></a>
+            <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><GithubIcon size={18} /></a>
           )}
           {profile.contact.linkedin && (
-            <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i className="fab fa-linkedin" /></a>
+            <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><LinkedinIcon size={18} /></a>
           )}
           {profile.contact.twitter && (
-            <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i className="fab fa-twitter" /></a>
+            <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter"><TwitterIcon size={18} /></a>
           )}
           {profile.contact.instagram && (
-            <a href={profile.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i className="fab fa-instagram" /></a>
+            <a href={profile.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><InstagramIcon size={18} /></a>
           )}
           {profile.contact.youtube && (
-            <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i className="fab fa-youtube" /></a>
+            <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><YoutubeIcon size={18} /></a>
           )}
         </motion.div>
       </section>

@@ -1,5 +1,12 @@
 import { Link } from 'react-router-dom'
 import { profile } from '../data/profile'
+import {
+  GithubIcon,
+  LinkedinIcon,
+  TwitterIcon,
+  InstagramIcon,
+  YoutubeIcon
+} from './icons/BrandIcons'
 
 export default function Footer() {
   return (
@@ -21,27 +28,27 @@ export default function Footer() {
         <div className="footer-social" aria-label="Social media links">
           {profile.contact.github && (
             <a href={profile.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <i className="fab fa-github" />
+              <GithubIcon size={18} />
             </a>
           )}
           {profile.contact.linkedin && (
             <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i className="fab fa-linkedin" />
+              <LinkedinIcon size={18} />
             </a>
           )}
           {profile.contact.twitter && (
             <a href={profile.contact.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <i className="fab fa-twitter" />
+              <TwitterIcon size={18} />
             </a>
           )}
           {profile.contact.instagram && (
             <a href={profile.contact.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <i className="fab fa-instagram" />
+              <InstagramIcon size={18} />
             </a>
           )}
           {profile.contact.youtube && (
             <a href={profile.contact.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-              <i className="fab fa-youtube" />
+              <YoutubeIcon size={18} />
             </a>
           )}
         </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Play } from 'lucide-react'
 
 interface YouTubeEmbedProps {
   videoId: string
@@ -13,14 +14,19 @@ export default function YouTubeEmbed({ videoId, title, description }: YouTubeEmb
     <div className="yt-card">
       <div className="yt-container">
         {!isPlaying && (
-          <button className="yt-overlay" onClick={() => setIsPlaying(true)}>
+          <button
+            className="yt-overlay"
+            onClick={() => setIsPlaying(true)}
+            aria-label={`Play video: ${title}`}
+          >
             <img
               src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
               alt={title}
               className="yt-thumbnail"
+              loading="lazy"
             />
             <div className="yt-play-btn">
-              <i className="fas fa-play" />
+              <Play size={24} fill="currentColor" />
             </div>
           </button>
         )}

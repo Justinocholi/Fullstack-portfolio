@@ -1,5 +1,6 @@
 import '../styles/development.css'
 import { motion } from 'framer-motion'
+import { Layers } from 'lucide-react'
 import { services } from '../data/services'
 
 const fadeUp = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
@@ -23,7 +24,7 @@ export default function Development() {
         <motion.div className="page-grid" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
           {services.map((item) => (
             <motion.div key={item.id} className="page-card" variants={fadeUp}>
-              <div className="card-icon purple"><i className="fas fa-layer-group" /></div>
+              <div className="card-icon purple"><Layers size={22} /></div>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
               <div className="page-tags" style={{ marginTop: '1rem' }}>

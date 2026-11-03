@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Video, List, Music, Share2 } from 'lucide-react'
 import YouTubeEmbed from './YouTubeEmbed'
 import AudioPlayer from './AudioPlayer'
 import SocialPostGrid from './SocialPostGrid'
@@ -23,8 +24,11 @@ export default function Multimedia() {
             onClick={() => setActiveTab(tab)}
             className={`mm-tab ${activeTab === tab ? 'active' : ''}`}
           >
-            <i className={`fas ${tab === 'videos' ? 'fa-video' : tab === 'playlists' ? 'fa-list' : tab === 'music' ? 'fa-music' : 'fa-share-alt'}`} />
-            {' '}{tab.charAt(0).toUpperCase() + tab.slice(1)}
+            {tab === 'videos' && <Video size={16} style={{ marginRight: 6 }} />}
+            {tab === 'playlists' && <List size={16} style={{ marginRight: 6 }} />}
+            {tab === 'music' && <Music size={16} style={{ marginRight: 6 }} />}
+            {tab === 'social' && <Share2 size={16} style={{ marginRight: 6 }} />}
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
         ))}
       </div>
